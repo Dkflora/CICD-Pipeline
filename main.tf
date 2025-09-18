@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "s3" {
 resource "aws_instance" "cicd" {
   ami           = "ami-08982f1c5bf93d976"
   instance_type = "t3.micro"
-  region        = us-east-1
+  region        = "us-east-1"
 
   user_data = <<-EOF
     #!/bin/bash
@@ -45,8 +45,10 @@ resource "aws_instance" "cicd" {
     yum install wget -y
 
     echo "[INFO] Installing Docker Compose..."
-    latest_version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep '"tag_name":' | cut -d '"' -f 4 || echo "v2.24.1")
-    curl -L "https://github.com/docker/compose/releases/download/${latest_version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   latest_version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep '"tag_name":' | cut -d '"' -f 4 || echo "v2.24.1")
+curl -L "https://github.com/docker/compose/releases/download/$${latest_version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+
     chmod +x /usr/local/bin/docker-compose
 
     echo "[INFO] Docker Compose version:"

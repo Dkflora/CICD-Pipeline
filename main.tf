@@ -6,15 +6,12 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
-resource "aws_s3_bucket" "s3" {
-  bucket = "Makchri-cicd-bucket"
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "CICD"
+terraform {
+  backend "s3" {
+    bucket       = "makasiw7backet"
+    key          = "cicd/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = false
   }
 }
 

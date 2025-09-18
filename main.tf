@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "s3" {
 resource "aws_instance" "cicd" {
   ami           = "ami-08982f1c5bf93d976"
   instance_type = "t3.micro"
-  region        = "us-east-1"
+  region        = us-east-1
 
   user_data = <<-EOF
     #!/bin/bash

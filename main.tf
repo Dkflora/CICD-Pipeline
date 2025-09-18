@@ -11,7 +11,7 @@ terraform {
     bucket       = "makasiw7backet"
     key          = "cicd/terraform.tfstate"
     region       = "us-east-1"
-    use_lockfile = false
+   
   }
 }
 
